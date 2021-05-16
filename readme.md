@@ -123,11 +123,11 @@ I added a lot of parameters so the model can be customized. It has default value
 Example:  
 _With bash script:_  
 ```console
-bash run_cnn-artists.sh --split_data shapes --architecture_out shapes_arch.jpg --performance_out shapes_performance.jpg --image_size 28 28 --kernel_size 3 3 --filters 15 30 --pool_size 3 3 --strides 3 3 --learning_rate 0.001  --batch_size 50 --epochs 21
+bash run_cnn-artists.sh --split_data shapes --architecture_out shapes_arch.jpg --performance_out shapes_performance.jpg --image_size 28 28 --kernel_size 3 3 --filters 15 30 --pool_size 3 3 --strides 3 3 --learning_rate 0.001 --batch_size 50 --epochs 21
 ```  
 _Without bash script:_  
 ```console
-python cnn-artists.py --split_data shapes --architecture_out shapes_arch.jpg --performance_out shapes_performance.jpg --image_size 28 28 --kernel_size 3 3 --filters 15 30 --pool_size 3 3 --strides 3 3 --learning_rate 0.001  --batch_size 50 --epochs 21
+python cnn-artists.py --split_data shapes --architecture_out shapes_arch.jpg --performance_out shapes_performance.jpg --image_size 28 28 --kernel_size 3 3 --filters 15 30 --pool_size 3 3 --strides 3 3 --learning_rate 0.001 --batch_size 50 --epochs 21
 ```  
 ## Discussion
 
