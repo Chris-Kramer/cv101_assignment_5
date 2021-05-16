@@ -89,35 +89,35 @@ If you want to try a data set that is unsplit I have added a data set called "sh
 I added a lot of parameters so the model can be customized. It has default values for all parameters. If you want to fiddle around with the model I suggest taking a look at the picture  below so you can see how many layers there are and what types of layers there are.   
 ![image](output/small_data-model_architecture.png)  
 
-- `split_data` Use this flag if you need to split the data in training and test data. It takes a folder as input. The folder must be located in the 'data' folder. The train-split divide will be 80/20%. If you use this flag, you cannot use the flags "train_data" and "test_data".  
+- `--split_data` Use this flag if you need to split the data in training and test data. It takes a folder as input. The folder must be located in the 'data' folder. The train-split divide will be 80/20%. If you use this flag, you cannot use the flags "train_data" and "test_data".  
     - DEFAULT = None  
-- `train_data` The folder with training data. Must be a subfolder in the 'data' folder (Use this if your data is already split).  
+- `--train_data` The folder with training data. Must be a subfolder in the 'data' folder (Use this if your data is already split).  
     - DEFAULT = small_training   
-- `validation_data` The folder with validation data. Must be a subfolder in the 'data' folder (use this if your data is already split).  
+- `--validation_data` The folder with validation data. Must be a subfolder in the 'data' folder (use this if your data is already split).  
     - DEFAULT = small_validation.  
-- `architecture_out` The filename of the output image containing the model architecture. The image will be located in the "output" folder.  
+- `--architecture_out` The filename of the output image containing the model architecture. The image will be located in the "output" folder.  
     - DEFAULT = model_architecture.png  
-- `performance_out` The filename for output plot over performance. It will be located in the folder "output".  
+- `--performance_out` The filename for output plot over performance. It will be located in the folder "output".  
     - DEFAULT = performance.png  
-- `image_size` The dimensions of resized pictures as a list of ints. The first value represents height, the second value represents width.  
+- `--image_size` The dimensions of resized pictures as a list of ints. The first value represents height, the second value represents width.  
     - DEFAULT = 120 120  
-- `kernel_size` The size of the convolutional kernels that are used in the first and second layer conv2d layer (called conv2d and conv2d_1 in the picture above). Values are given as a list of ints (with a length of 2). The first value represents the kernel size in conv2d the second value represents the kernel size in conv2d_1.  
+- `--kernel_size` The size of the convolutional kernels that are used in the first and second layer conv2d layer (called conv2d and conv2d_1 in the picture above). Values are given as a list of ints (with a length of 2). The first value represents the kernel size in conv2d the second value represents the kernel size in conv2d_1.  
     - DEFAULT = 3 5 (3x3 and 5x5)  
-- `filters` The number of filters in the convolutional layers (there are two). The argument is a list of ints (length of two). The first value is the number of filters in the first conv2d layer (conv2d). The second value is the number of filters in the second conv2d layer (conv2d_1).  
+- `--filters` The number of filters in the convolutional layers (there are two). The argument is a list of ints (length of two). The first value is the number of filters in the first conv2d layer (conv2d). The second value is the number of filters in the second conv2d layer (conv2d_1).  
     - DEFAULT = 32 50  
-- `pool_size` The pool size for the two pooling layers (max_pooling2d and max_pooling2d_1). The argument is a list of ints (length of two). The first value represents pool size in the first pooling layer (max_pooling2d), the second value represents pool size in the second pooling layer (max_pooling2d_1).  
+- `--pool_size` The pool size for the two pooling layers (max_pooling2d and max_pooling2d_1). The argument is a list of ints (length of two). The first value represents pool size in the first pooling layer (max_pooling2d), the second value represents pool size in the second pooling layer (max_pooling2d_1).  
     - DEFAULT = 2 2 (2x2 and 2x2)  
-- `strides` The strides in the two pooling layers (max_pooling2d and max_pooling2d_1). The argument is a list of ints (length of two). The first value represents strides in the first pooling layer (max_pooling2d), the second value represents strides in the second pooling layer (max_pooling2d_1).  
+- `--strides` The strides in the two pooling layers (max_pooling2d and max_pooling2d_1). The argument is a list of ints (length of two). The first value represents strides in the first pooling layer (max_pooling2d), the second value represents strides in the second pooling layer (max_pooling2d_1).  
    - DEFAULT = 2 2 (2x2 and 2x2)  
-- `padding` The padding type for each convolutional layer. The argument is a list of strings (length of two). The first value is the padding in the first conv2d layer (conv2d). The second value is the padding in the second conv2d layer (conv2d_1). I recommend that you don't change these. You can learn more about TensorFlow's padding types here: https://www.tensorflow.org/api_docs/python/tf/nn/conv2d.  
+- `--padding` The padding type for each convolutional layer. The argument is a list of strings (length of two). The first value is the padding in the first conv2d layer (conv2d). The second value is the padding in the second conv2d layer (conv2d_1). I recommend that you don't change these. You can learn more about TensorFlow's padding types here: https://www.tensorflow.org/api_docs/python/tf/nn/conv2d.  
     - DEFAULT = same same  
-- `activation_layers` The activation function in each activation layer (There are four). Arguments are given as a list of strings. First value represents first activation layer (activation), second value represents second activation layer (activation_1), third value represents the third activation layer (activation_2). The fourth layer represents the output activation layer (activation_3). I recommend not changing these unless you are doing binary classification. You can read more about TensorFlow's activation layers here: https://keras.io/api/layers/activations/  
+- `--activation_layers` The activation function in each activation layer (There are four). Arguments are given as a list of strings. First value represents first activation layer (activation), second value represents second activation layer (activation_1), third value represents the third activation layer (activation_2). The fourth layer represents the output activation layer (activation_3). I recommend not changing these unless you are doing binary classification. You can read more about TensorFlow's activation layers here: https://keras.io/api/layers/activations/  
     - DEFAULT = relu relu relu softmax  
-- `learning_rate` The learning rate for stochastic gradient descent. This is used in the optimizer.  
+- `--learning_rate` The learning rate for stochastic gradient descent. This is used in the optimizer.  
     - DEFAULT = 0.01  
-- `batch_size` The batch size processing.  
+- `--batch_size` The batch size processing.  
     - DEFAULT = 32
-- `epochs` The number of epochs that should run.  
+- `--epochs` The number of epochs that should run.  
     - DEFAULT = 20  
 
 Example:  
