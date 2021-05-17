@@ -6,15 +6,16 @@ python -m venv $VENVNAME
 
 # This makes sure that the bash script can be run from bash emulator on windows 
 # Test if the folder bin in venvname exists
-if [[ -f "/$VENVNAME/bin" ]]
+if [ -d "$VENVNAME/bin" ]
 
     then
         source $VENVNAME/bin/activate
+        echo "Building venv for Linux/Mac ..."
     
     else
         source $VENVNAME/Scripts/activate
+        echo "Building venv for Windows ..."
 fi
-
 
 echo "Upgrading pip and installing dependencies"
 #Upgrade pip
