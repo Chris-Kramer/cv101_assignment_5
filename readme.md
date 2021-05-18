@@ -130,6 +130,5 @@ _Without bash script:_
 python cnn-artists.py --split_data shapes --architecture_out shapes_arch.jpg --performance_out shapes_performance.jpg --image_size 28 28 --kernel_size 3 3 --filters 15 30 --pool_size 3 3 --strides 3 3 --learning_rate 0.001 --batch_size 50 --epochs 21
 ```  
 ## Discussion
-
-## Running on windows
-This script have not been tested on a Windows machine and the bash script is made for Linux/mac users. If you're running on a local windows machine, and don't have an Unix shell with bash, you have to set up a virtual environment, activate it, install dependencies (requirements.txt) and then run the scripts manually from the src folder.
+The model works fine as a “quick-n-dirty” deep learning classifier, which can be applied to different data sets. However, when trained on the full data set it does seem to overfit. It stops learning the validation data after around 5 epochs and only gets better at the training data. The loss function also seems to diverge at around 5 epochs, where the training loss keeps falling, while the validation loss rises (see figure 2, p. 18). After 20 epochs the model have an accuracy of 32 percent. This suggests that the model isn’t generalizable. However, the model might be useful as a quick way to create pre-trained embeddings on specific domains, which can then be used for style transfer.
+The model can probably become more generalizable by adding dropout layers, regularization, early stopping, and by using data augmentation to create more data. Moreover, the model might become better by using pre-trained embeddings from a model, which have been trained on paintings. However, this would risk making the model less generalizable across different domains.  
