@@ -1,20 +1,13 @@
 # Assignment 5 - Classification benchmarks
 **Christoffer Kramer**  
 **10-04-2021**  
-Multi-class classification of impressionist painters  
-So far in class, we've been working with 'toy' datasets - handwriting, cats, dogs, and so on. However, this course is on the application of computer vision and deep learning to cultural data. This week, your assignment is to use what you've learned so far to build a classifier which can predict artists from paintings.  
-You can find the data for the assignment here: https://www.kaggle.com/delayedkarma/impressionist-classifier-data  
-Using this data, you should build a deep learning model using convolutional neural networks which classify paintings by their respective artists. Why might we want to do this? Well, consider the scenario where we have found a new, never-before-seen painting which is claimed to be the artist Renoir. An accurate predictive model could be useful here for art historians and archivists!  
-For this assignment, you can use the CNN code we looked at in class, such as the ShallowNet architecture or LeNet. You are also welcome to build your own model, if you dare - I recommend against doing this.  
-Perhaps the most challenging aspect of this assignment will be to get all of the images into format that can be fed into the CNN model. All of the images are of different shapes and sizes, so the first task will be to resize the images to have them be a uniform (smaller) shape.  
-You'll also need to think about how to get the images into an array for the model and how to extract 'labels' from filenames for use in the classification report.
-
+This week, your assignment is to use what you've learned so far to build a classifier that can pre-dict artists from paintings. You can find the data for the assignment here: https://www.kaggle.com/delayedkarma/impressionist-classifier-data. Using this data, you should build a deep learning model using convolutional neural networks which classify paintings by their respective artists.  
 ## Method  
 This model is based on LeNet architecture and uses a convolutional neural network to classify images. It is supposed to be a “quick-n-dirty” deep learning classifier, which can be easily applied to new data sets with customizable parameters. The only requirement is that the data set is placed in the “data” folder, and is structured correctly.  
 
 ## How to run  
-This should work on both Linux, Mac, and Windows. However, If you are running on a local windows machine, you should run it from a bash emulator such as git bash.  
-Because of limitations regarding data storage on git, I'm uploading a very small slice of the data. So the performance is atrociously bad (around 18%). Moreover, when resizing images you might encounter the following warning "Corrupt JPEG data: 10 extraneous bytes before marker 0xd9". Ignore this, since it just means, that one of the images is corrupted.  
+This should work on both Linux, Mac, and Windows. However, If you are running on a local win-dows machine, you should run it from a bash emulator such as git bash.
+Because of limitations regarding data storage on git, I'm uploading a very small slice of the data. So the performance is atrociously bad (around 18%). Moreover, you might encounter the following warning "Corrupt JPEG data: 10 extraneous bytes before marker 0xd9". Ignore this, since it just means, that one of the images is corrupted.  
 
 ### Running on small data set:  
 **Step 1 - Clone repo:**  
@@ -45,7 +38,7 @@ The bash script will print out a performance report to the terminal and save a s
 NOTE: If you’re running on a windows machine, the script might not save an image of the architecture, since pydot doesn’t play well with windows.  
 
 ## Using custom data
-All data must be located in the “data” folder. You can either use data that has already been split between training and test data or use a data set that needs to be split. The script will automatically resize the images, get x and y data, and find label names (based on the folder names). NOTE: The files in the category folders must only be image files. So make sure, that there aren't any txt, readme, or CSV files in the folders.  
+All data must be located in the “data” folder. You can either use data that has already been split between training and test data or use a data set that needs to be split. The script will automatically resize the images, get x and y data, and find label names (based on the folder names). NOTE: The files in the folders should only be image files or directories. I’ve tried to make the script ignore files that aren’t folders or images to the best of my abilities. However, some file types might slip through and be mistaken as folders or images even though they aren’t.  
 
 ### Split  data
 If your data is already split it needs to follow the structure below. The names don't matter just the structure.  
@@ -129,6 +122,3 @@ _Without bash script:_
 ```console
 python cnn-artists.py --split_data shapes --architecture_out shapes_arch.jpg --performance_out shapes_performance.jpg --image_size 28 28 --kernel_size 3 3 --filters 15 30 --pool_size 3 3 --strides 3 3 --learning_rate 0.001 --batch_size 50 --epochs 21
 ```  
-## Discussion
-The model works fine as a “quick-n-dirty” deep learning classifier, which can be applied to different data sets. However, when trained on the full data set it does seem to overfit. It stops learning the validation data after around 5 epochs and only gets better at the training data. The loss function also seems to diverge at around 5 epochs, where the training loss keeps falling, while the validation loss rises (see figure 2, p. 18). After 20 epochs the model have an accuracy of 32 percent. This suggests that the model isn’t generalizable. However, the model might be useful as a quick way to create pre-trained embeddings on specific domains, which can then be used for style transfer.
-The model can probably become more generalizable by adding dropout layers, regularization, early stopping, and by using data augmentation to create more data. Moreover, the model might become better by using pre-trained embeddings from a model, which have been trained on paintings. However, this would risk making the model less generalizable across different domains.  

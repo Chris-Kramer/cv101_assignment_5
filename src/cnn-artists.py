@@ -302,7 +302,7 @@ def main():
     #Conv
     model.add(Conv2D(filters[0], (kernel_size[0], kernel_size[0], ), 
                      padding=padding[0], 
-                     input_shape= (image_size[0], image_size[1], 3)))
+                     input_shape= (image_size[1], image_size[0], 3)))
     #Relu
     model.add(Activation(activation_layer[0]))
     #Pool

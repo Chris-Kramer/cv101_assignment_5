@@ -19,7 +19,7 @@ fi
 
 echo "Upgrading pip and installing dependencies"
 #Upgrade pip
-# I'm specifying that I'm pip from python, since my pc have problems upgrading pip locally if I don't do it.
+# I'm specifying that I'm using pip from python, since my pc have problems upgrading pip locally if I don't do it.
 python -m pip install --upgrade pip
 
 # Test if requirements exist and install it

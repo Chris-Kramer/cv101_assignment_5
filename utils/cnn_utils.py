@@ -16,12 +16,18 @@ def get_x(folder_path, dimensions):
     for folder in Path(folder_path).glob("*"):
         #For each file in the folder
         for image in Path(folder).glob("*"):
-            #read image
-            image = cv2.imread(str(image))
-            #resize image
-            image = cv2.resize(image, dimensions, interpolation = cv2.INTER_AREA)
-            #append image to array and convert it to a value between 0 and 1
-            X.append(image.astype("float")/255.)
+            #Test if it is an image
+            if str(image).endswith(('.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif')):
+                #read image
+                image = cv2.imread(str(image))
+                #resize image
+                image = cv2.resize(image, dimensions, interpolation = cv2.INTER_AREA)
+                #append image to array and convert it to a value between 0 and 1
+                X.append(image.astype("float")/255.)
+                #If it isn't an image skip it
+            else:
+                print(f"WARNING: File {image} is not an image! ... Skipping it ...")
+                continue
     #Convert X to numpy array
     X = np.array(X)
     return X
@@ -33,16 +39,20 @@ def get_label_names(folder_path):
     label_names = []
     #For each folder in the training data
     for folder in Path(folder_path).glob("*"):
-        
-        # Find labels
-        # If it is winows path use \ instead of / in the regex
-        if platform.system() == "Windows":
-            label = re.findall(r"(?!.*\\).+", str(folder))
-        else:
-            label = re.findall(r"(?!.*/).+", str(folder))
-        
-        #Append the folders names to the list "label_names" (findall returns a list)
-        label_names.append(label[0])
+        #test if it is a folder, if it isn't skip it
+        if os.path.isdir(folder) and not str(folder).endswith(".ipynb_checkpoints"):
+            # Find labels
+            # If it is winows path use \ instead of / in the regex
+            if platform.system() == "Windows":
+                label = re.findall(r"(?!.*\\).+", str(folder))
+            else:
+                label = re.findall(r"(?!.*/).+", str(folder))
+            
+            #Append the folders names to the list "label_names" (findall returns a list)
+            label_names.append(label[0])
+        else:        
+            print(f"WARNING: File {folder} is not a directory ... Skipping it ...")
+            continue
     return label_names
     
 #Get y data (the label for each picture)
@@ -51,11 +61,20 @@ def get_y(folder_path):
     i = 0 #Counter
     #For each folder in the test data
     for folder in Path(folder_path).glob("*"):
-        #For each image in the folder
-        for img in folder.glob("*"):
-            #Append the folder index (e.g. the label) to y
-            y.append(i)
-        i += 1
+        #test if it is a folder, if it isn't skip it
+        if os.path.isdir(folder_path) and not str(folder).endswith(".ipynb_checkpoints"):
+            #For each image in the folder
+            for image in folder.glob("*"):
+                #Test if it is an image
+                if str(image).endswith(('.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif')):
+                    #Append the folder index (e.g. the label) to y
+                    y.append(i)
+                else: 
+                    print(f"WARNING: File {image} is not an image! ... Skipping it.")
+            i += 1
+        else:
+            print(f"WARNING: File {folder} is not a directory ... Skipping it ...")
+            continue
     #Convert Y to numpy array
     y = np.array(y)
     return y
