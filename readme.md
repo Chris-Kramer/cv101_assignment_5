@@ -1,12 +1,12 @@
 # Assignment 5 - Classification benchmarks
 **Christoffer Kramer**  
 **10-04-2021**  
-This week, your assignment is to use what you've learned so far to build a classifier that can pre-dict artists from paintings. You can find the data for the assignment here: https://www.kaggle.com/delayedkarma/impressionist-classifier-data. Using this data, you should build a deep learning model using convolutional neural networks which classify paintings by their respective artists.  
+This week, your assignment is to use what you've learned so far to build a classifier that can predict artists from paintings. You can find the data for the assignment here: https://www.kaggle.com/delayedkarma/impressionist-classifier-data. Using this data, you should build a deep learning model using convolutional neural networks which classify paintings by their respective artists.  
 ## Method  
 This model is based on LeNet architecture and uses a convolutional neural network to classify images. It is supposed to be a “quick-n-dirty” deep learning classifier, which can be easily applied to new data sets with customizable parameters. The only requirement is that the data set is placed in the “data” folder, and is structured correctly.  
 
 ## How to run  
-This should work on both Linux, Mac, and Windows. However, If you are running on a local win-dows machine, you should run it from a bash emulator such as git bash.
+This should work on both Linux, Mac, and Windows. However, If you are running on a local windows machine, you should run it from a bash emulator such as git bash.
 Because of limitations regarding data storage on git, I'm uploading a very small slice of the data. So the performance is atrociously bad (around 18%). Moreover, you might encounter the following warning "Corrupt JPEG data: 10 extraneous bytes before marker 0xd9". Ignore this, since it just means, that one of the images is corrupted.  
 
 ### Running on small data set:  
